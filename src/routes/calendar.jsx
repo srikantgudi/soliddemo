@@ -1,8 +1,6 @@
 import { createSignal, createMemo, For, createEffect, onCleanup } from "solid-js";
 import { DateTime } from "luxon";
 import Pagetitle from "~/components/Pagetitle";
-import Panel from "~/components/Panel";
-
 
 export default function Calendar() {
   let [curdt, setCurdt] = createSignal(DateTime.now());
@@ -35,10 +33,9 @@ export default function Calendar() {
       <div>
         <div className="flex items-center gap-1 px-2 bg-zinc-800">
           <Pagetitle text={`Calendar`} size="3xl" /> <div>!! One Unique feature is that the days are static and the week days are dynamic.!!</div>
-        </div> 
+        </div>
       </div>
       <div className="p-2">
-
         <div className="flex items-center gap-1">
           <div className="text-3xl font-bold my-4 mr-24">{curdt().toFormat("MMMM yyyy")}</div>
           <span className="text-2xl mr-2">Years:</span>
@@ -48,7 +45,7 @@ export default function Calendar() {
             className="w-16 bg-gray-200 p-1 text-gray-900 text-2xl rounded-sm">{y}</button>}
           </For>
           <button onClick={() =>setCurdt(curdt().set({year: curdt().year+10}))} className="w-18 bg-gray-200 p-1 text-gray-900 text-xl rounded-sm">+10 &raquo;</button>
-          <button onClick={() => cal.goToday()} className="bg-indigo-800 text-white p-2 shadow-md shadow-yellow-400 w-18 font-bold rounded-sm">Today</button>
+          <button onClick={() =>setCurdt(DateTime.now)} className="bg-indigo-800 text-white p-2 shadow-md shadow-yellow-400 w-18 font-bold rounded-sm">Today</button>
         </div>
 
         <div className="grid grid-cols-12 gap-1 my-2">

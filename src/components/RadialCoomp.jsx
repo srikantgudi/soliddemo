@@ -1,9 +1,9 @@
 import { createSignal, createMemo } from "solid-js";
 import Pagetitle from "~/components/Pagetitle";
-import Calendar from '~/modules/calendarmod';
+import Calendarmod from '~/modules/calendarmod';
 
 export default function RadialcalComp() {
-  const [cal, setCal] = createSignal(new Calendar());
+  const [cal, setCal] = createSignal(new Calendarmod());
 
   return (
     <div className="border">

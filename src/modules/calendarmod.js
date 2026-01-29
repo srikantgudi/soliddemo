@@ -6,7 +6,7 @@ import { createSignal } from 'solid-js';
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export default class Calendar {
+export default class Calendarmod {
   constructor() { 
     this.dt = DateTime.now(); 
     this.numYears = 10;
@@ -28,8 +28,9 @@ export default class Calendar {
 
   fullFmt = () => this.dt.toFormat("EEEE dd MMMM yyyy")
 
-  setMonth = (m) => {
-    setCurdt(this.dt.set({ month: this.dt.month + m }))
+  goToday() {
+    let d = DateTime.now();
+    this.dt.set({year: d.year, month: d.month, day: 1});
   }
 
   getMonth = () => this.dt.month;
@@ -58,25 +59,6 @@ export default class Calendar {
   goNext = (n) => {
     this.setNumyears(n);
     this.dt.set({ year: this.dt.year + n })
-  }
-  
-  yearRange = (numyears) => {
-    // let startYear = this.dt.year - (this.dt.year % 10);
-    let arr = [];
-    for (let y=0; y < numyears; y++) {
-      arr.push(this.startYear()+y);
-    }
-    return arr;
-  }
-
-  yearButtons = (arr) => {
-    return (
-      <For each={arr}>
-        {(y) => (
-          <button className="bg-gray-700 text-blue-200 p-1 rounded-sm">{y}</button>
-        )}
-      </For>
-    )
   }
 
   marks = (num_marks, radius, fontsize=3) => {
